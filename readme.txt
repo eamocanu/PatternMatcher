@@ -8,7 +8,8 @@ Input characters allowed: only 'a'-'z' or 'A'-'Z'
 
 
 Future work is to leverage this code and apply it to image recognition.
-
+This is now available in package brain.model.images, however unfinished.
+You will need to provide your own images if you run MainImageUi.
 
 
 When you first start the UI, you see something like this:
