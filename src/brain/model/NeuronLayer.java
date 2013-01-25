@@ -65,6 +65,7 @@ public class NeuronLayer {
 		bestMatch= new HashMap<Double, Neuron>();
 		neurons= new LinkedList<Neuron>();
 		
+		//XXX
 		neurons.add(new Neuron("TRUE"));
 		neurons.add(new Neuron("TR"));
 		neurons.add(new Neuron("T"));

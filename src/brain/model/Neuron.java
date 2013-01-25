@@ -178,6 +178,7 @@ public class Neuron {
             confidenceInPercent -= 0.001 * (MAX_SIGNAL - bestMatch.getMatchStrength());
 			//confidenceInPercent -= 0.006 * (MAX_SIGNAL - bestMatch.getMatchStrength());
             
+            
             //penalize neurons that are confident of right input, but in fact are not the best 
             //This will lead to them forgetting the input and definitely being less sure of what they know
             //so they can learn other patterns
@@ -191,6 +192,33 @@ public class Neuron {
             if (confidenceInPercent < 0.5){
             	isFreeToLearn=true;
             }
+            
+            //////////////////////// new learning method here
+            i=-1;
+            for (Dendrite dendrite: dendrites){
+            	i++;
+				if (i>=input.length()) break;
+				//if I'm close to expected signal but I'm not best, then forget it->get random; don't want 2 similar neurons
+				if( Math.abs(bestMatch.getMatchStrength() - this.getMatchStrength()) <= MAX_SIGNAL * 0.26){
+					dendrite.setExpectation((char)getRandomNumber('A','Z'));
+					//also decr its confidence since it's not valid anymore
+					//remove this dendrite's value from neuron's confidence
+					confidenceInPercent = confidenceInPercent - confidenceInPercent/dendrites.size();
+					System.out.println("getting random");
+            	} else {
+            		//don't strongly match crt input
+            		delta= input.charAt(i) - dendrite.getExpectation();
+            		//The more confident I am, the less I want to deviate from current expectation.
+                    delta= delta * (1 -confidenceInPercent);
+                    System.out.print(dendrite.getExpectation()+" -> ");
+                    System.out.print((char)(dendrite.getExpectation()+ delta*0.2) +" -> ");
+                    System.out.println(input.charAt(i));
+                    dendrite.setExpectation((char)(dendrite.getExpectation()+ delta*0.2));
+//                    D.Expectation = D.Expectation + RandomPlusMinus(0.00001) * Delta * 0.2
+            	}
+            }
+            ////////////////////////
+            if (true) return;
             
             //high confidence non best match neurons don't care about current input because they
             //are already good at recognizing their own specific input so they dont want to learn

@@ -18,7 +18,7 @@ import brain.ui.NeuronLevelUi;
 public class MainUi {
 
 	/**
-	 * 
+	 * enter a word to see which of the neurons match is the best
 	 */
 	public MainUi() {
 		// TODO Auto-generated constructor stub
@@ -62,28 +62,7 @@ public class MainUi {
 		nb.addNeuron(new Neuron("CROW"));
 	}
 
-	
-	static void runExperiment1(NeuronLayer nb){
-		Neuron best;
-		String searchString;
-		
-		int min=Integer.MAX_VALUE, max=Integer.MIN_VALUE, avg=0, numTimes=500, sum=0;
-		List<Integer> means = new ArrayList<Integer>();
-		
-//			nb.addNeuron(new Neuron("XXX"));
-//			nb.addNeuron(new Neuron("HLJ"));
 
-//			searchString="NUP";
-//			best=nb.getBestMatch(searchString);
-//			int i=-1;
-//			while(!searchString.equals(best.getData())){
-//				i++;
-//				best= nb.getBestMatch(searchString);
-////				System.out.println(i+": best match for "+searchString +" is "+ best.getData());
-//			}
-//		
-		System.out.println(" ======================== ======================== ======================== ");
-	}
 	
 
 }
